@@ -1,14 +1,13 @@
 <x-app-layout>
     <div class="container mx-auto px-4 py-8">
-        <!-- Titre et bouton Ajouter -->
+        
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Liste des Catégories</h2>
-            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
-                Ajouter une Catégorie
-            </a>
+           <a href="{{ route('categories.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                    Ajouter une catégorie
+                </a>
         </div>
 
-        <!-- Tableau des catégories -->
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <table class="min-w-full">
                 <thead class="bg-gray-100">
@@ -28,12 +27,12 @@
                         <td class="px-6 py-4 text-sm">
                             <div class="flex space-x-4">
                                 <!-- Bouton Modifier -->
-                                <a href="#" class="text-blue-500 hover:text-blue-700">Modifier</a>
+                                <a href="{{ route('categories.edit', $category->id) }}" class="text-blue-500 hover:text-blue-700">Modifier</a>
                                 <!-- Formulaire Supprimer -->
-                                <form action="#" method="POST" onsubmit="return confirm('Supprimer cette catégorie ?')">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
-                                </form>
+                                <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
+                                        @csrf
+                                        <button type="submit" class="text-red-500 hover:underline">Supprimer</button>
+                                    </form>
                             </div>
                         </td>
                     </tr>

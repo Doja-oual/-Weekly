@@ -3,7 +3,7 @@
         <!-- Titre et bouton Ajouter -->
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Liste des Posts</h2>
-            <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+            <a href="{{ route('post.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
                 Ajouter un Post
             </a>
         </div>
@@ -36,11 +36,11 @@
                         <td class="px-6 py-4 text-sm">
                             <div class="flex space-x-4">
                                 <!-- Bouton Voir -->
-                                <a href="{{ route('posts.show', $post->id) }}" class="text-blue-500 hover:text-blue-700">Voir</a>
+                                <a href="#" class="text-blue-500 hover:text-blue-700">Voir</a>
                                 <!-- Bouton Modifier -->
-                                <a href="{{ route('posts.edit', $post->id) }}" class="text-yellow-500 hover:text-yellow-700">Modifier</a>
+                                <a href="#" class="text-yellow-500 hover:text-yellow-700">Modifier</a>
                                 <!-- Formulaire Supprimer -->
-                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Supprimer ce post ?')">
+                                <form action="#" method="POST" onsubmit="return confirm('Supprimer ce post ?')">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
                                 </form>

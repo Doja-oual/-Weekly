@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
 
@@ -18,26 +19,28 @@ class PostController extends Controller
 
     }
     public function create(){
-        return view('Poste.create');
+        $categories = Categorie::all(); // Or use ->get() if you need specific fields
+        return view('Poste.create',compact('categories'));
     }
-    public function store(StorePostRequest  $request){
-        
+    public function store(StorePostRequest $request)
+    {
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('posts', 'public');
         }
-
+    
         // Création du post
         $post = Post::create([
             'titre' => $request->titre,
             'description' => $request->description,
             'prix' => $request->prix,
             'image' => $imagePath,
-            'user_id' => Auth::id(), 
+            'user_id' => Auth::id(),
             'categorie_id' => $request->categorie_id,
             'status' => $request->status,
         ]);
-        $newPost= Post::create($post);
+    
+        // Pas besoin de créer à nouveau, $post contient déjà le post créé
         return redirect(route('post'));
     }
 }

@@ -6,8 +6,7 @@
     <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">
         <h1 class="text-2xl font-bold mb-6">Créer un nouveau post</h1>
 
-        <form action="#" method="POST" enctype="multipart/form-data">
-            @csrf
+        <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">            @csrf
             @method('POST')
 
             <!-- Titre -->
@@ -36,13 +35,19 @@
 
             <!-- Catégorie -->
             <div class="mb-4">
-                <label for="categorie_id" class="block text-gray-700 font-semibold mb-2">Catégorie</label>
-                <select name="categorie_id" id="categorie_id" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    
-                        <option value="#">Categorie</option>
-                
-                </select>
-            </div>
+                        <label for="categorie_id" class="block text-gray-700 font-semibold mb-2">Catégorie</label>
+                        <select name="categorie_id" id="categorie_id" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="" disabled selected>Choisir une catégorie</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('categorie_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->nom }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('categorie_id')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
 
             <!-- Statut -->
             <div class="mb-4">
