@@ -8,6 +8,7 @@
 
         <form action="#" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('POST')
 
             <!-- Titre -->
             <div class="mb-4">

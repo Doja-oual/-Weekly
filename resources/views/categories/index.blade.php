@@ -3,7 +3,7 @@
         <!-- Titre et bouton Ajouter -->
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Liste des Catégories</h2>
-            <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
                 Ajouter une Catégorie
             </a>
         </div>

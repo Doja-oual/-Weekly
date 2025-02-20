@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\StoreCategorieRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class CategorieController extends Controller {
     // public function __construct() {
@@ -19,16 +21,9 @@ class CategorieController extends Controller {
         return view('categories.create');
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'nom' => 'required|string|max:255|unique:categories,nom',
-        ]);
+    public function store(StoreCategorieRequest $request) {
 
-        Categorie::create([
-            'nom' => $request->nom,
-            'slug' => Str::slug($request->nom),
-        ]);
-
+        Categorie::create($request->validated()); 
         return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée.');
     }
 

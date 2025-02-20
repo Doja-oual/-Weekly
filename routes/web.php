@@ -14,10 +14,15 @@ Route::get('/', function () {
 
 Route::get('/categories/index', [CategorieController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategorieController::class, 'create'])->name('categories.create');
-Route::post('/categories.store', [CategorieController::class, 'store'])->name('store');
+Route::post('/categories', [CategorieController::class, 'store'])->name('categories.store');
+Route::post('/categories', [CategorieController::class, 'store'])->name('categories.store'); 
+
+
+
+Route::get('/post/index', [PostController::class, 'index'])->name('Poste.post');
 Route::get('/post',[PostController::class,'index'])->name('post');
 Route::get('/post/create',[PostController::class,'create'])->name('post.create');
-Route::post('/post/create',[PostController::class,'create'])->name('post.create');
+Route::post('/post',[PostController::class,'store'])->name('post.create');
 
 
 
