@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+
 
 
 
@@ -57,5 +59,21 @@ class PostController extends Controller
             $post->likes()->create(['user_id' => Auth::id()]);
         }
         return back();
+    }
+
+    public function update(UpdatePostRequest $request, $id) {
+        $posts = Post::findOrFail($id);
+        $posts->update($request->validated());
+        return redirect()->route('Poste.index')->with('success', 'post mise à jour.');
+    }
+    public function destroy($id) {
+        $posts = Post::findOrFail($id);
+        $posts->delete();
+        return redirect()->route('Poste.index')->with('success', 'post supprimée.');
+    }
+    public function edit($id) {
+        $categories = Categorie::all();
+        $posts = Post::findOrFail($id);
+        return view('Poste.edit', compact('posts', 'categories'));
     }
 }

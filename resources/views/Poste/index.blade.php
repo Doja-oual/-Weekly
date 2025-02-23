@@ -35,12 +35,9 @@
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <div class="flex space-x-4">
-                                <!-- Bouton Voir -->
                                 <a href="#" class="text-blue-500 hover:text-blue-700">Voir</a>
-                                <!-- Bouton Modifier -->
-                                <a href="#" class="text-yellow-500 hover:text-yellow-700">Modifier</a>
-                                <!-- Formulaire Supprimer -->
-                                <form action="#" method="POST" onsubmit="return confirm('Supprimer ce post ?')">
+                                <a href="{{ route('post.edit', $post->id) }}" class="text-yellow-500 hover:text-yellow-700">Modifier</a>
+                                <form action="{{ route('post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Supprimer ce post ?')">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
                                 </form>
