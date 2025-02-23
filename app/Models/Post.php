@@ -14,4 +14,19 @@ class Post extends Model
         'user_id',
         'categorie_id'
     ];
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likedByUser()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
 }

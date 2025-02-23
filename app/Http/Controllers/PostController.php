@@ -12,15 +12,21 @@ use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
-    public function  index(){
+    public function  show(){
         $posts = Post::paginate(10);
         return view('Poste.index',['posts'=>$posts]);
 
 
     }
-    public function create(){
+    public function index()
+    {
+        $posts = Post::paginate(9); 
+        return view('Poste.post', compact('posts'));
+    }
+    public function create()
+    {
         $categories = Categorie::all(); // Or use ->get() if you need specific fields
-        return view('Poste.create',compact('categories'));
+        return view('Poste.create', compact('categories'));
     }
     public function store(StorePostRequest $request)
     {
@@ -28,7 +34,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('posts', 'public');
         }
-    
+
         // Création du post
         $post = Post::create([
             'titre' => $request->titre,
@@ -39,8 +45,17 @@ class PostController extends Controller
             'categorie_id' => $request->categorie_id,
             'status' => $request->status,
         ]);
-    
+
         // Pas besoin de créer à nouveau, $post contient déjà le post créé
         return redirect(route('post'));
+    }
+    public function like(Post $post)
+    {
+        if ($post->likes()->where('user_id', Auth::id())->exists()) {
+            $post->likes()->where('user_id', Auth::id())->delete();
+        } else {
+            $post->likes()->create(['user_id' => Auth::id()]);
+        }
+        return back();
     }
 }

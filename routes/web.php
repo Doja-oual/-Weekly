@@ -21,10 +21,11 @@ Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name(
 Route::post('/categories/{id}/update', [CategorieController::class, 'update'])->name('categories.update');
 
 
-Route::get('/post/index', [PostController::class, 'index'])->name('Poste.post');
-Route::get('/post',[PostController::class,'index'])->name('post');
-Route::get('/post/create',[PostController::class,'create'])->name('post.create');
+Route::get('/post/index', [PostController::class, 'show'])->name('Poste.index');
+Route::get('/post/post', [PostController::class, 'index'])->name('post.post');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post',[PostController::class,'store'])->name('post.store');
+Route::post('/post/{post}/like', [PostController::class, 'like'])->name('post.like')->middleware('auth');
 Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit'); 
 
 
