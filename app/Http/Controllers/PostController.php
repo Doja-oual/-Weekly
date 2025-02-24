@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdatePostRequest;
 
 
@@ -20,6 +21,24 @@ class PostController extends Controller
 
 
     }
+
+    public function showe(Post $post)
+    {
+        $post->load('comments.user'); // Charge les commentaires avec les utilisateurs associés
+        return view('poste.showe', compact('post'));
+    }
+
+    public function comment(StoreCommentRequest $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->comments()->create([
+            'user_id' => Auth::id(),
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('post.showe', $post->id)->with('success', 'Commentaire ajouté avec succès !');
+    }
+
     public function index()
     {
         $posts = Post::paginate(9); 

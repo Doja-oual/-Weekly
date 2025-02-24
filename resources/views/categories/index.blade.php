@@ -12,18 +12,14 @@
             <table class="min-w-full">
                 <thead class="bg-gray-100">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Slug</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach($categories as $category)
                     <tr class="hover:bg-gray-50 transition duration-200">
-                        <td class="px-6 py-4 text-sm text-gray-700">{{ $category->id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-700">{{ $category->nom }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">{{ $category->slug }}</td>
                         <td class="px-6 py-4 text-sm">
                             <div class="flex space-x-4">
                                 <!-- Bouton Modifier -->

@@ -21,6 +21,8 @@ Route::put('/categories/{id}/update', [CategorieController::class, 'update'])->n
 
 
 Route::get('/post/index', [PostController::class, 'show'])->name('Poste.index');
+Route::get('/post/anonce', [PostController::class, 'showe'])->name('post.showe');
+Route::post('/post/{id}/comment', [PostController::class, 'comment'])->name('post.comment')->middleware('auth');
 Route::get('/post/post', [PostController::class, 'index'])->name('post.post');
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post',[PostController::class,'store'])->name('post.store');

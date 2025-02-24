@@ -77,6 +77,11 @@
                             </svg>
                             <span>#</span>
                         </div>
+                        <div>
+                        <a href="{{ route('post.showe', $post->id) }}" class="text-blue-500 hover:text-blue-700">Voir</a>
+
+                        </div>
+
                     </div>
                 </div>
             @empty

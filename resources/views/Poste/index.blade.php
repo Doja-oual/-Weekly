@@ -35,7 +35,7 @@
                         </td>
                         <td class="px-6 py-4 text-sm">
                             <div class="flex space-x-4">
-                                <a href="#" class="text-blue-500 hover:text-blue-700">Voir</a>
+                                <a href="{{ route('post.showe', $post->id) }}" class="text-blue-500 hover:text-blue-700">Voir</a>
                                 <a href="{{ route('post.edit', $post->id) }}" class="text-yellow-500 hover:text-yellow-700">Modifier</a>
                                 <form action="{{ route('post.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Supprimer ce post ?')">
                                     @csrf @method('DELETE')
